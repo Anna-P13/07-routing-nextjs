@@ -6,9 +6,9 @@ interface FetchResponse {
   totalPages: number;
 }
 
-export async function fetchNotes (page: number = 1, search: string = "", perPage: number = 12, tag: string | undefined): Promise<FetchResponse> {
+export async function fetchNotes (page: number = 1, search: string = "", perPage: number = 12, tag?: string): Promise<FetchResponse> {
     const response = await axios.get<FetchResponse>("https://notehub-public.goit.study/api/notes", 
-        {params: {page, search, perPage}, 
+        {params: {page, search, perPage, tag}, 
         headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`},} 
     )
     return response.data; 
